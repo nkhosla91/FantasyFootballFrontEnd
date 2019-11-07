@@ -21,7 +21,7 @@ export default class App extends React.Component {
   handleNavBar = (event) => {
     this.setState({navigation: event.target.name})
   }
-
+// kjhbsdfkjhbasjhdfbahs 
   addNewTeam = (newTeam) => {
     this.setState({myTeams: [...this.state.myTeams, newTeam] })
   }
