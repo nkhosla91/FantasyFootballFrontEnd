@@ -1,26 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
+import NavBar from './components/NavBar';
 import './App.css';
+import CreateTeam from './components/CreateTeam';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends React.Component {
+
+  state = {
+    NFL: [],
+    navigation: "",
+    myTeams: []
+  }
+
+  componentDidMount() {
+    fetch('https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2019&week=9&format=json')
+      .then(response => response.json())
+      .then(NFL => this.setState({ NFL }));
+  }
+
+  handleNavBar = (event) => {
+    this.setState({navigation: event.target.name})
+  }
+
+  addNewTeam = (newTeam) => {
+    this.setState({myTeams: [...this.state.myTeams, newTeam] })
+  }
+
+
+  render () {
+    console.log(this.state.myTeams)
+    if(this.state.navigation === ""){
+      return (
+        <div>
+          <div name="Nav Bar">
+            <NavBar handleNavBar={this.handleNavBar}/>
+          
+          </div>
+        </div>
+      )
+    }else if (this.state.navigation === "Create a New Team"){
+      return (
+        <div>
+          <div name="Nav Bar">
+            <NavBar handleNavBar={this.handleNavBar}/>
+            <CreateTeam NFL={this.state.NFL} addNewTeam={this.addNewTeam}/>
+          </div>
+        </div>
+      )
+    }
+  }//end of render
+
+
 }
-
-export default App;
