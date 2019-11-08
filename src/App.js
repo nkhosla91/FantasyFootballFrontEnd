@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from './components/NavBar';
 import './App.css';
 import CreateTeam from './components/CreateTeam';
+import LogInPage from './components/LogInPage';
+
 
 
 export default class App extends React.Component {
@@ -9,7 +11,9 @@ export default class App extends React.Component {
   state = {
     NFL: [],
     navigation: "",
-    myTeams: []
+    myTeams: [],
+    loggedIn: false,
+    username: ""
   }
 
   componentDidMount() {
@@ -21,14 +25,22 @@ export default class App extends React.Component {
   handleNavBar = (event) => {
     this.setState({navigation: event.target.name})
   }
-// kjhbsdfkjhbasjhdfbahs 
+
   addNewTeam = (newTeam) => {
     this.setState({myTeams: [...this.state.myTeams, newTeam] })
   }
 
+  signedIn = (username) => {
+    // debugger
+    this.setState({
+      username: username,
+      loggedIn: true
+    })
+  }
+
 
   render () {
-    console.log(this.state.myTeams)
+    console.log(this.state.loggedIn)
     if(this.state.navigation === ""){
       return (
         <div>
