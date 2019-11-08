@@ -41,7 +41,12 @@ export default class App extends React.Component {
 
   render () {
     console.log(this.state.loggedIn)
-    if(this.state.navigation === ""){
+    if(!this.state.loggedIn){
+      return(
+        <LogInPage signedIn={this.signedIn}/>
+      )
+    }
+    else if(this.state.navigation === ""){
       return (
         <div>
           <div name="Nav Bar">
