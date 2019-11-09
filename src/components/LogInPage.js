@@ -1,5 +1,5 @@
 import React from 'react'
-import { EventEmitter } from 'events'
+// import { EventEmitter } from 'events'
 
 export default class LogIn extends React.Component {
 

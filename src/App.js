@@ -27,7 +27,7 @@ export default class App extends React.Component {
   }
 
   addNewTeam = (newTeam) => {
-    this.setState({myTeams: [...this.state.myTeams, newTeam] })
+    this.setState({myTeams: [...this.state.myTeams, newTeam], navigation: ""})
   }
 
   signedIn = (username) => {
@@ -40,13 +40,14 @@ export default class App extends React.Component {
 
 
   render () {
-    console.log(this.state.loggedIn)
-    if(!this.state.loggedIn){
-      return(
-        <LogInPage signedIn={this.signedIn}/>
-      )
-    }
-    else if(this.state.navigation === ""){
+    console.log(this.state.myTeams)
+    // if(!this.state.loggedIn){
+    //   return(
+    //     <LogInPage signedIn={this.signedIn}/>
+    //   )
+    // }
+    // else 
+    if(this.state.navigation === ""){
       return (
         <div>
           <div name="Nav Bar">
@@ -60,7 +61,7 @@ export default class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <CreateTeam NFL={this.state.NFL} addNewTeam={this.addNewTeam}/>
+            <CreateTeam NFL={this.state.NFL} addNewTeam={this.addNewTeam} handleNavBar={this.handleNavBar}/>
           </div>
         </div>
       )

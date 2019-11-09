@@ -11,13 +11,24 @@ export default class CreateTeam extends React.Component {
         WR2: null,
         TE: null,
         DEF: null,
-        K: null
+        K: null,
+        teamNamed: false,
+        playersSigned: false
     }
 
     handleChange = (event) => {
       this.setState({[event.target.name]: event.target.value})
     }
 
+    createdTeam = (event) => {
+      event.preventDefault()
+      this.setState({teamNamed: true})
+    }
+
+    playersSigned = (event) => {
+      event.preventDefault()
+    }
+    
     handleSubmit = (event) => {
       event.preventDefault()
       if(!this.state.teamName){
@@ -29,96 +40,123 @@ export default class CreateTeam extends React.Component {
       }else if(this.state.WR1 === this.state.WR2){
         alert("You can't pick the same wide reciever twice!")
       }else{
-        this.props.addNewTeam(this.state)    
+        let newTeam =   {   
+          teamName: this.state.teamName,
+          QB: this.state.QB,
+          RB1: this.state.RB1,
+          RB2: this.state.RB2,
+          WR1: this.state.WR1,
+          WR2: this.state.WR2,
+          TE: this.state.TE,
+          DEF: this.state.DEF,
+          K: this.state.L
+        }
+        this.props.addNewTeam(newTeam)    
+
       }
   
     }
 
 
     render () {
-      console.log(this.state)
-        return (
-          <form className="creatTeam" onSubmit={this.handleSubmit}>
-          <input placeholder="Name your team..." name="teamName" onChange={this.handleChange}/>
+      // console.log(this.state)
 
-            <label>
-              <p>QB</p>
-              <select name="QB" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "QB"}).map(player => {
-                    return <option  key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>RB</p>
-              <select name="RB1" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "RB"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>RB</p>
-              <select name="RB2" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "RB"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>WR</p>
-              <select name="WR1" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "WR"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>WR</p>
-              <select name="WR2" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "WR"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>TE</p>
-              <select name="TE" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "TE"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>DEF</p>
-              <select name="DEF" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "DEF"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <p>K</p>
-              <select name="K" onChange={this.handleChange}>
-                <option value=" "> </option>
-                {this.props.NFL.players.filter(player =>{
-                  return player.position === "K"}).map(player => {
-                    return <option key={player.id}>{player.name}</option>
-                  })
-                }
-              </select>
-              <input type="submit" value="Make your Team!" />
-            </label>
-            </form>
-            
+      if (!this.state.teamNamed){
+        return (
+          <form className="review-full-container" onSubmit={this.handleSubmit, this.createdTeam}>
+            <input placeholder="Name your team..." name="teamName" onChange={this.handleChange}/>
+      
+                <input type="submit" value=" Make your Team!" />
+  
+          </form>
         )
+
+      } else {
+        return (
+          <div>
+                <form className="review-full-container" onSubmit={this.handleSubmit}>
+                  <h1><b>{this.state.teamName}</b></h1>
+                  <p> </p>
+                  <label>
+                    <p>QB</p>
+                    <select name="QB" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "QB"}).map(player => {
+                          return <option  key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>RB</p>
+                    <select name="RB1" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "RB"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>RB</p>
+                    <select name="RB2" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "RB"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>WR</p>
+                    <select name="WR1" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "WR"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>WR</p>
+                    <select name="WR2" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "WR"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>TE</p>
+                    <select name="TE" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "TE"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>DEF</p>
+                    <select name="DEF" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "DEF"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p>K</p>
+                    <select name="K" onChange={this.handleChange}>
+                      <option value=" "> </option>
+                      {this.props.NFL.players.filter(player =>{
+                        return player.position === "K"}).map(player => {
+                          return <option key={player.id}>{player.name}</option>
+                        })
+                      }
+                    </select>
+                    <p></p>
+                    <input type="submit" value="Make your Team!" onSubmit={this.playersSigned}/>
+                  </label>
+                </form>
+            </div>  
+          )
+        }
     }//end of return
 
 
