@@ -1,4 +1,5 @@
 import React from 'react'
+import { EventEmitter } from 'events'
 
 export default class LogIn extends React.Component {
 
@@ -17,6 +18,29 @@ export default class LogIn extends React.Component {
     })
   }
 
+  createUser = (event) => {
+    event.preventDefault()
+    const body = {
+      email: this.state.email,
+      username: this.state.signedInUsername,
+      password: this.state.password
+    }
+
+    console.log(body)
+
+    return fetch("http://localhost:4000/api/v1/users", {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+      })
+      .then(response => response.json())
+
+
+  }
+
   handleChange = (event) => {
       event.preventDefault()
       this.setState({
@@ -25,10 +49,10 @@ export default class LogIn extends React.Component {
   }
 
   handleSignIn = (event) => {
-    //   console.log("handlesignin")
-    //   debugger
       event.preventDefault()
+
       this.props.signedIn(this.state.signedInUsername)
+
   }
 
   currentView = () => {
@@ -39,6 +63,7 @@ export default class LogIn extends React.Component {
             <h2>Sign Up!</h2>
             <fieldset>
               <legend>Create Account</legend>
+              <form onSubmit={this.createUser}>
               <ul>
                 <li>
                   <label name="createUsername">Username:</label>
@@ -53,8 +78,9 @@ export default class LogIn extends React.Component {
                   <input type="password" id="password" required name="password" onChange={this.handleChange} value={this.state.password}/>
                 </li>
               </ul>
+            <input type="submit" value="Create User"/>
+            </form>
             </fieldset>
-            <button>Submit</button>
             <button type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
           </form>
         )
@@ -88,7 +114,7 @@ export default class LogIn extends React.Component {
 
 
   render() {
-      console.log(this.state)
+      // console.log(this.state)
     return (
       <section id="entry-page">
         {this.currentView()}

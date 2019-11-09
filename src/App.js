@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './components/NavBar';
-import './App.css';
+import './App.scss';
 import CreateTeam from './components/CreateTeam';
 import LogInPage from './components/LogInPage';
 
