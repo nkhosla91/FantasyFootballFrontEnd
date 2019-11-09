@@ -49,7 +49,7 @@ export default class CreateTeam extends React.Component {
           WR2: this.state.WR2,
           TE: this.state.TE,
           DEF: this.state.DEF,
-          K: this.state.L
+          K: this.state.K
         }
         this.props.addNewTeam(newTeam)    
 
