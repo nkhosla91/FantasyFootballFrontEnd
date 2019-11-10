@@ -25,7 +25,8 @@
 	box-sizing: border-box;
 }
 body {
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  background: url(http://www.netanimations.net/football_animation.gif);
 	line-height: 1.6;
 	margin: 0;
 	min-height: 100vh;
@@ -230,6 +231,7 @@ section#entry-page {
 //////'/////create team container
 
 .review-full-container {
+  box-shadow: 10px 10px grey;
   margin-top: 50px;
   margin-bottom: 180px;
   margin-right: 580px;
@@ -237,7 +239,7 @@ section#entry-page {
   text-align: center;
   height: 90%;
   border-radius: 25px;
-  background: #73AD21;
+  background: rgb(4, 175, 4);
   padding: 20px;
 
 }
@@ -318,3 +320,120 @@ section#entry-page {
     transform: translateY(120vh);
   }
 }
+
+///////compare team bar
+
+.c-input {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  position: relative;
+  background: #594a9d;
+  padding: 0.75rem 1.25rem;
+  margin: 0 0 0.75rem 0;
+  border-color: #594a9d;
+  border-radius: 0.5rem;
+  width: auto;
+}
+.c-input:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.c-input__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.c-input__icon {
+  margin-left: 0.75em;
+}
+
+.c-dropdown {
+  position: absolute;
+  top: calc(100% - 0.5rem);
+  left: 0;
+  background: #594a9d;
+  display: none;
+  width: 100%;
+  z-index: 100;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  list-style: none;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+.c-dropdown__trigger:checked + .c-dropdown {
+  display: block;
+  z-index: 10;
+}
+
+.c-dropdown__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-top: 1px solid #453a7a;
+  line-height: 1.25;
+  width: 100%;
+  font-size: 0.75em;
+}
+.c-dropdown__trigger:checked + .c-dropdown__option {
+  font-weight: bold;
+}
+.c-dropdown__trigger:checked + .c-dropdown__option .c-dropdown__option__icon {
+  opacity: 1;
+}
+
+.c-dropdown__option__icon {
+  flex: 1.25rem 0 0;
+  opacity: 0;
+}
+
+.c-dropdown__trigger {
+  display: none;
+}
+
+.compare-container {
+  background: rgba(0, 0, 0, 0.459);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  font: 18px "Poppins", Arial, sans-serif;
+}
+
+svg {
+  fill: currentColor;
+}
+
+compare-body {
+  background: #1e1935;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+

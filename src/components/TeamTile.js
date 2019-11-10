@@ -6,7 +6,7 @@ export default class TeamTile extends React.Component {
          return (
         
             <div className="item">
-                <div class="content">
+                <div className="content">
                     <h3>{this.props.teamName}</h3>
                     <p>{this.props.QB}</p>
                     <p>{this.props.RB1}</p>

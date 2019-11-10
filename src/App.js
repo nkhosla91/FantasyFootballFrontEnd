@@ -4,6 +4,7 @@ import './App.scss';
 import CreateTeam from './components/CreateTeam';
 import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
+import CompareTeams from './containers/CompareTeams';
 
 
 
@@ -101,6 +102,7 @@ export default class App extends React.Component {
   }
 
 
+
   render () {
     console.log(this.state.navigation)
     // if(!this.state.loggedIn){
@@ -133,6 +135,15 @@ export default class App extends React.Component {
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
             <TeamContainer myTeams={this.state.myTeams}/>
+          </div>
+        </div>
+      )
+    }else if (this.state.navigation === "Compare Teams"){
+      return (
+        <div>
+          <div name="Nav Bar">
+            <NavBar handleNavBar={this.handleNavBar}/>
+            <CompareTeams myTeams={this.state.myTeams}/>
           </div>
         </div>
       )
