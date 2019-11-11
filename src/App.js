@@ -4,7 +4,7 @@ import './App.scss';
 import CreateTeam from './components/CreateTeam';
 import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
-import CompareTeams from './containers/CompareTeams';
+import CompareTeamsContainer from './containers/CompareTeamsContainer';
 import EditDeleteContainer from './containers/EditDeleteContainer';
 // import { Route, Switch } from 'react-router-dom'
 
@@ -91,7 +91,7 @@ export default class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <CompareTeams myTeams={this.state.myTeams}/>
+            <CompareTeamsContainer myTeams={this.state.myTeams}/>
           </div>
         </div>
       )

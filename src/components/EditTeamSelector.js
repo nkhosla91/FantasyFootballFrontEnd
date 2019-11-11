@@ -4,6 +4,7 @@ import React from 'react'
 export default class EditTeamSelector extends React.Component {
 
     render () {
+        console.log(this.props)
         return(
             <div className="compare-container">
             <menu className="c-input">
@@ -17,7 +18,7 @@ export default class EditTeamSelector extends React.Component {
                     <select name="team" onChange={this.props.setTeam}>
                         {this.props.myTeams.map(team => {
                             return (
-                                <option>{team.teamName}</option>
+                                <option>{team.name}</option>
                                 )}
                                 )}
                             </select>

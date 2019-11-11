@@ -2,7 +2,7 @@ import React from 'react'
 import CompareTeamSelector from '../components/CompareTeamSelector'
 import CompareCards from '../components/CompareCards'
 
-export default class CompareTeams extends React.Component {
+export default class CompareTeamsContainer extends React.Component {
 
     state = {
         teamOne: null,
@@ -15,7 +15,7 @@ export default class CompareTeams extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.props.myTeams)
         if (!this.state.teamOne || !this.state.teamTwo){
             return(
                 <CompareTeamSelector myTeams={this.props.myTeams} setTeams={this.setTeams}/>

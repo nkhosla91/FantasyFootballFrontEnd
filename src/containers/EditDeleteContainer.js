@@ -10,7 +10,6 @@ export default class CompareTeams extends React.Component {
     }
 
     setTeam = (event) => {
-        debugger
         event.preventDefault()
         this.setState({[event.target.name]: event.target.value})
     }

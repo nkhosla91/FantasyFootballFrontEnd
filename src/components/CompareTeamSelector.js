@@ -4,6 +4,7 @@ import React from 'react'
 export default class CompareTeams extends React.Component {
 
     render () {
+        console.log(this.props)
         return(
             <div className="compare-container">
             <menu className="c-input">
@@ -17,7 +18,7 @@ export default class CompareTeams extends React.Component {
                     <select name="teamOne" onChange={this.props.setTeams}>
                         {this.props.myTeams.map(team => {
                             return (
-                                <option>{team.teamName}</option>
+                                <option>{team.name}</option>
                                 )}
                                 )}
                             </select>
@@ -34,7 +35,7 @@ export default class CompareTeams extends React.Component {
                     <select name="teamTwo" onChange={this.props.setTeams}>
                         {this.props.myTeams.map(team => {
                             return (
-                                <option>{team.teamName}</option>
+                                <option>{team.name}</option>
                                 )}
                                 )}
                             </select>
