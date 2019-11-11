@@ -5,7 +5,7 @@ export default class CompareTeams extends React.Component {
 
     render () {
         return(
-            <div>
+            <div className="compare-container">
             <menu className="c-input">
                 <label className="c-input__label" for="radio">Select Team
                 <svg className="c-input__icon" viewBox="0 0 20 20" width="20" height="20">
