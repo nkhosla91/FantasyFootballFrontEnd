@@ -29,10 +29,7 @@ export default class CreateTeam extends React.Component {
       }
     }
 
-    playersSigned = (event) => {
-      event.preventDefault()
-    }
-    
+
     handleSubmit = (event) => {
       event.preventDefault()
       if(!this.state.teamName){
@@ -44,7 +41,7 @@ export default class CreateTeam extends React.Component {
       }else if(this.state.WR1 === this.state.WR2){
         alert("You can't pick the same wide reciever twice!")
       }else{
-        let newTeam =   {   
+        let postTeam =   {   
           teamName: this.state.teamName,
           QB: this.state.QB,
           RB1: this.state.RB1,
@@ -55,19 +52,32 @@ export default class CreateTeam extends React.Component {
           DEF: this.state.DEF,
           K: this.state.K
         }
-        
- 
 
-        this.props.addNewTeam(newTeam)    
+        let newTeam =   {   
+          name: this.state.teamName,
+          players: [
+              {name: this.state.QB},
+              {name: this.state.RB1},
+              {name: this.state.RB2},
+              {name: this.state.WR1},
+              {name: this.state.WR2},
+              {name: this.state.TE},
+              {name: this.state.DEF},
+              {name: this.state.K}
+          ]
+        }
+        
+
         return fetch("http://localhost:4000/api/v1/teams", {
           method: 'POST',
           headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(newTeam)
-          })
-          .then(response => response.json())
+          body: JSON.stringify(postTeam)
+        })
+        .then(response => response.json())
+        .then(this.props.addNewTeam(newTeam))    
         
       }//end of if
   
@@ -75,7 +85,7 @@ export default class CreateTeam extends React.Component {
 
 
     render () {
-      // console.log(this.state)
+      console.log(this.state)
 
       if (!this.state.teamNamed){
         return (
@@ -167,7 +177,7 @@ export default class CreateTeam extends React.Component {
                       }
                     </select>
                     <p></p>
-                    <input type="submit" value="Make your Team!" onSubmit={this.playersSigned}/>
+                    <input type="submit" value="Make your Team!"/>
                   </label>
                 </form>
             </div>  

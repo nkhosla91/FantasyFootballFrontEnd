@@ -5,6 +5,7 @@ import CreateTeam from './components/CreateTeam';
 import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
 import CompareTeams from './containers/CompareTeams';
+import EditDeleteContainer from './containers/EditDeleteContainer';
 // import { Route, Switch } from 'react-router-dom'
 
 
@@ -16,67 +17,7 @@ export default class App extends React.Component {
     navigation: "",
     loggedIn: false,
     username: "",
-    myTeams: [{ 
-                teamName: "Team 1",
-                DEF: "Cleveland Browns",
-                K: "Harrison Butker",
-                QB: "Tom Brady",
-                RB1: "Peyton Barber",
-                RB2: "Giovani Bernard",
-                TE: "Blake Bell",
-                WR1: "Marcell Ateman",
-                WR2: "Tavon Austin"
-                },{
-                teamName: "Team 2",
-                DEF: "Los Angeles Chargers",
-                K: "Aldrick Rosas",
-                QB: "Tim Boyle",
-                RB1: "Nick Bawden",
-                RB2: "Saquon Barkley",
-                TE: "Andrew Beck",
-                WR1: "Odell Beckham",
-                WR2: "Danny Amendola"
-                },{
-                teamName: "Team 3",
-                DEF: "New York Jets",
-                K: "Eddy Pineiro",
-                QB: "Chase Daniel",
-                RB1: "Chris Carson",
-                RB2: "Rex Burkhead",
-                TE: "Luke Stocker",
-                WR1: "A.J. Brown",
-                WR2: "Kendrick Bourne"
-             },{
-                teamName: "Team 4",
-                DEF: "New York Jets",
-                K: "Eddy Pineiro",
-                QB: "Chase Daniel",
-                RB1: "Chris Carson",
-                RB2: "Rex Burkhead",
-                TE: "Luke Stocker",
-                WR1: "A.J. Brown",
-                WR2: "Kendrick Bourne"
-              },{
-                teamName: "Team 5",
-                DEF: "New York Jets",
-                K: "Eddy Pineiro",
-                QB: "Chase Daniel",
-                RB1: "Chris Carson",
-                RB2: "Rex Burkhead",
-                TE: "Luke Stocker",
-                WR1: "A.J. Brown",
-                WR2: "Kendrick Bourne"
-              },{
-                teamName: "Team 6",
-                DEF: "New York Jets",
-                K: "Eddy Pineiro",
-                QB: "Chase Daniel",
-                RB1: "Chris Carson",
-                RB2: "Rex Burkhead",
-                TE: "Luke Stocker",
-                WR1: "A.J. Brown",
-                WR2: "Kendrick Bourne"
-            }
+    myTeams: [
           ]
   }
 
@@ -84,6 +25,10 @@ export default class App extends React.Component {
     fetch('http://localhost:4000/api/v1/players')
       .then(response => response.json())
       .then(NFL => this.setState({ NFL }));
+
+    fetch('http://localhost:4000/api/v1/teams')
+      .then(response => response.json())
+      .then(myTeams => this.setState({ myTeams }))
   }
 
   handleNavBar = (event) => {
@@ -105,7 +50,9 @@ export default class App extends React.Component {
 
 
   render () {
-    console.log(this.state.NFL)
+     console.log(this.state.myTeams)
+    
+    // console.log(this.state.NFL)
     // if(!this.state.loggedIn){
     //   return(
     //     <LogInPage signedIn={this.signedIn}/>
@@ -139,12 +86,21 @@ export default class App extends React.Component {
           </div>
         </div>
       )
-    }else if (this.state.navigation === "Compare Teams"){
+    } else if (this.state.navigation === "Compare Teams"){
       return (
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
             <CompareTeams myTeams={this.state.myTeams}/>
+          </div>
+        </div>
+      )
+    } else if (this.state.navigation === "Edit Teams"){
+      return (
+        <div>
+          <div name="Nav Bar">
+            <NavBar handleNavBar={this.handleNavBar}/>
+            <EditDeleteContainer myTeams={this.state.myTeams}/>
           </div>
         </div>
       )
