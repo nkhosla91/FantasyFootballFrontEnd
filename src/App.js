@@ -5,6 +5,7 @@ import CreateTeam from './components/CreateTeam';
 import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
 import CompareTeams from './containers/CompareTeams';
+// import { Route, Switch } from 'react-router-dom'
 
 
 
@@ -80,7 +81,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2019&week=9&format=json')
+    fetch('http://localhost:4000/api/v1/players')
       .then(response => response.json())
       .then(NFL => this.setState({ NFL }));
   }
@@ -104,7 +105,7 @@ export default class App extends React.Component {
 
 
   render () {
-    console.log(this.state.navigation)
+    console.log(this.state.NFL)
     // if(!this.state.loggedIn){
     //   return(
     //     <LogInPage signedIn={this.signedIn}/>
@@ -116,7 +117,7 @@ export default class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-          
+            <TeamContainer myTeams={this.state.myTeams}/>
           </div>
         </div>
       )

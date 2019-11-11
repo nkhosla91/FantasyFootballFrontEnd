@@ -17,12 +17,16 @@ export default class CreateTeam extends React.Component {
     }
 
     handleChange = (event) => {
-      this.setState({[event.target.name]: event.target.value})
+        this.setState({[event.target.name]: event.target.value})
     }
 
     createdTeam = (event) => {
       event.preventDefault()
-      this.setState({teamNamed: true})
+      if(this.state.teamName) {
+        this.setState({teamNamed: true})
+      }else {
+        alert('Please set a team name')
+      }
     }
 
     playersSigned = (event) => {
@@ -51,9 +55,21 @@ export default class CreateTeam extends React.Component {
           DEF: this.state.DEF,
           K: this.state.K
         }
-        this.props.addNewTeam(newTeam)    
+        
+ 
 
-      }
+        this.props.addNewTeam(newTeam)    
+        return fetch("http://localhost:4000/api/v1/teams", {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newTeam)
+          })
+          .then(response => response.json())
+        
+      }//end of if
   
     }
 
@@ -81,7 +97,7 @@ export default class CreateTeam extends React.Component {
                     <p>QB</p>
                     <select name="QB" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "QB"}).map(player => {
                           return <option  key={player.id}>{player.name}</option>
                         })
@@ -90,7 +106,7 @@ export default class CreateTeam extends React.Component {
                     <p>RB</p>
                     <select name="RB1" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "RB"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -99,7 +115,7 @@ export default class CreateTeam extends React.Component {
                     <p>RB</p>
                     <select name="RB2" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "RB"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -108,7 +124,7 @@ export default class CreateTeam extends React.Component {
                     <p>WR</p>
                     <select name="WR1" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "WR"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -117,7 +133,7 @@ export default class CreateTeam extends React.Component {
                     <p>WR</p>
                     <select name="WR2" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "WR"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -126,7 +142,7 @@ export default class CreateTeam extends React.Component {
                     <p>TE</p>
                     <select name="TE" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "TE"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -135,7 +151,7 @@ export default class CreateTeam extends React.Component {
                     <p>DEF</p>
                     <select name="DEF" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "DEF"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })
@@ -144,7 +160,7 @@ export default class CreateTeam extends React.Component {
                     <p>K</p>
                     <select name="K" onChange={this.handleChange}>
                       <option value=" "> </option>
-                      {this.props.NFL.players.filter(player =>{
+                      {this.props.NFL.filter(player =>{
                         return player.position === "K"}).map(player => {
                           return <option key={player.id}>{player.name}</option>
                         })

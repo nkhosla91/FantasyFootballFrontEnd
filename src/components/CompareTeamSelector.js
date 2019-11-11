@@ -5,7 +5,7 @@ export default class CompareTeams extends React.Component {
 
     render () {
         return(
-            <div className="compare-container">
+            <div>
             <menu className="c-input">
                 <label className="c-input__label" for="radio">Select Team
                 <svg className="c-input__icon" viewBox="0 0 20 20" width="20" height="20">
@@ -31,7 +31,7 @@ export default class CompareTeams extends React.Component {
                 </label>
                 <input className="c-dropdown__trigger" id="checkbox" type="checkbox" aria-hidden="true"/>
                 <ul className="c-dropdown u-text-small">
-                    <select name="teamTw0" onChange={this.props.setTeams}>
+                    <select name="teamTwo" onChange={this.props.setTeams}>
                         {this.props.myTeams.map(team => {
                             return (
                                 <option>{team.teamName}</option>
