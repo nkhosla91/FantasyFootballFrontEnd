@@ -15,6 +15,11 @@ export default class EditCards extends React.Component {
         this.props.patchNewTeam(event)
     }
 
+    handleDelete = (event) => {
+      event.preventDefault()
+      this.props.deleteTeam(event)
+    }
+
     render() {
         // console.log(this.props)
         // debugger
@@ -98,8 +103,13 @@ export default class EditCards extends React.Component {
                                     }
                                   </select>
                                   <p></p>
-                                  <input type="submit" value="Make your Team!"/>
+                                  <input type="submit" value="Update Your Team!"/>
+                                  <p></p>
+                                   <input type="click" value="Delete Your Team!" onClick={this.handleDelete}/>
+                          
                                 </label>
+                              </form>
+                              <form>
                               </form>
                           </div>  
                    

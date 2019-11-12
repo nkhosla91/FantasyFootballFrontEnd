@@ -6,7 +6,8 @@ import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
 import CompareTeamsContainer from './containers/CompareTeamsContainer';
 import EditDeleteContainer from './containers/EditDeleteContainer';
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+
 
 
 
@@ -19,6 +20,14 @@ class App extends React.Component {
     username: "",
     myTeams: [
           ]
+  }
+
+  removeTeam = (name) => {
+    let teams = this.state.myTeams
+    teams = teams.filter(team=>{
+      return team.name != name
+    })
+    this.setState({myTeams: teams})
   }
 
   componentDidMount() {
@@ -47,9 +56,6 @@ class App extends React.Component {
     }, () => this.props.history.push('/navbar'))
   }
 
-  myFunc = () => {
-    return <LogInPage loggedIn={this.loggedIn}/>
-  }
 
 
   render () {
@@ -60,16 +66,14 @@ class App extends React.Component {
       return(
         <Switch>
           <Route path="/login" render={()=> <LogInPage signedIn={this.signedIn} />}/>
+          <Redirect from='/' to="/login"/>
        </Switch>
       )
     }
     else if(this.state.navigation === ""){
-      // debugger
-    return (
+      return (
           <Switch>
             <Route path="/navbar" render={()=> <NavBar handleNavBar={this.handleNavBar} />}/>
-              {/* <NavBar handleNavBar={this.handleNavBar}/>
-            </Route> */}
           </Switch>
       
       )
@@ -105,7 +109,7 @@ class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <EditDeleteContainer myTeams={this.state.myTeams} NFL={this.state.NFL}/>
+            <EditDeleteContainer myTeams={this.state.myTeams} NFL={this.state.NFL} removeTeam={this.removeTeam}/>
           </div>
         </div>
       )

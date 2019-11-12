@@ -65,7 +65,7 @@ export default class CompareTeams extends React.Component {
         this.setState({[event.target.name]: newPlayer[0]})
     }
 
-    patchNewTeam = (event => {
+    patchNewTeam = (event) => {
         event.preventDefault()
         let patchTeam =   {   
             id: this.state.id,
@@ -91,7 +91,17 @@ export default class CompareTeams extends React.Component {
             body: JSON.stringify(patchTeam)
             })
             .then(response => response.json())
-    })
+    }
+
+    deleteTeam = (event) => {
+        event.preventDefault()
+        this.props.removeTeam(this.state.name)
+
+        fetch(`http://localhost:4000/api/v1/teams/${this.state.id}`, {
+          method: 'delete'
+             })
+            .then(response => response.json())
+        }
 
     render () {
         console.log(this.state)
@@ -118,6 +128,7 @@ export default class CompareTeams extends React.Component {
                     NFL={this.props.NFL}
                     playerChange={this.playerChange}
                     patchNewTeam={this.patchNewTeam}
+                    deleteTeam={this.deleteTeam}
                     />
                 </div>
                 )
