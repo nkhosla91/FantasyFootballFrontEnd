@@ -4,7 +4,7 @@ import React from 'react'
 export default class EditTeamSelector extends React.Component {
 
     render () {
-        console.log(this.props)
+        // console.log(this.props)
         return(
             <div className="compare-container">
             <menu className="c-input">
@@ -15,7 +15,7 @@ export default class EditTeamSelector extends React.Component {
                 </label>
                 <input className="c-dropdown__trigger" id="radio" type="checkbox" aria-hidden="true"/>
                 <ul className="c-dropdown u-text-small">
-                    <select name="team" onChange={this.props.setTeam}>
+                    <select name="name" onChange={this.props.setTeam}>
                         {this.props.myTeams.map(team => {
                             return (
                                 <option>{team.name}</option>

@@ -66,7 +66,7 @@ export default class CreateTeam extends React.Component {
               {name: this.state.K}
           ]
         }
-        
+        debugger
 
         return fetch("http://localhost:4000/api/v1/teams", {
           method: 'POST',

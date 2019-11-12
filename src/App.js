@@ -100,7 +100,7 @@ export default class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <EditDeleteContainer myTeams={this.state.myTeams}/>
+            <EditDeleteContainer myTeams={this.state.myTeams} NFL={this.state.NFL}/>
           </div>
         </div>
       )
