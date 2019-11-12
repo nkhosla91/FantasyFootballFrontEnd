@@ -30,6 +30,15 @@ class App extends React.Component {
     this.setState({myTeams: teams})
   }
 
+  editTeam = (editedTeam) => {
+    let teams = this.state.myTeams
+    teams = teams.filter(team=>{
+      return team.name != editedTeam.name
+    })
+    teams.push(editedTeam)
+    this.setState({myTeams: teams, navigation: "See All Your Teams" })
+  }
+
   componentDidMount() {
     fetch('http://localhost:4000/api/v1/players')
       .then(response => response.json())
@@ -44,8 +53,12 @@ class App extends React.Component {
     this.setState({navigation: event.target.name})
   }
 
+  handleRedirect = (value) => {
+    this.setState({navigation: value})
+  }
+
   addNewTeam = (newTeam) => {
-    this.setState({myTeams: [...this.state.myTeams, newTeam], navigation: ""})
+    this.setState({myTeams: [...this.state.myTeams, newTeam], navigation: "See All Your Teams"})
   }
 
   signedIn = (username) => {
@@ -59,7 +72,8 @@ class App extends React.Component {
 
 
   render () {
-     console.log(this.state.loggedIn, this.state.navigation)
+
+     console.log(this.state.myTeams)
     
     // console.log(this.state.NFL)
     if(!this.state.loggedIn){
@@ -82,7 +96,7 @@ class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <CreateTeam NFL={this.state.NFL} addNewTeam={this.addNewTeam} handleNavBar={this.handleNavBar}/>
+            <CreateTeam NFL={this.state.NFL} addNewTeam={this.addNewTeam} handleNavBar={this.handleNavBar} />
           </div>
         </div>
       )
@@ -109,7 +123,7 @@ class App extends React.Component {
         <div>
           <div name="Nav Bar">
             <NavBar handleNavBar={this.handleNavBar}/>
-            <EditDeleteContainer myTeams={this.state.myTeams} NFL={this.state.NFL} removeTeam={this.removeTeam}/>
+            <EditDeleteContainer myTeams={this.state.myTeams} NFL={this.state.NFL} removeTeam={this.removeTeam} handleRedirect={this.handleRedirect} editTeam={this.editTeam}/>
           </div>
         </div>
       )

@@ -56,14 +56,14 @@ export default class CreateTeam extends React.Component {
         let newTeam =   {   
           name: this.state.teamName,
           players: [
-              {name: this.state.QB},
-              {name: this.state.RB1},
-              {name: this.state.RB2},
-              {name: this.state.WR1},
-              {name: this.state.WR2},
-              {name: this.state.TE},
-              {name: this.state.DEF},
-              {name: this.state.K}
+              {name: this.state.QB, position: "QB"},
+              {name: this.state.RB1, position: "RB"},
+              {name: this.state.RB2, position: "RB"},
+              {name: this.state.WR1, position: "WR"},
+              {name: this.state.WR2, position:"WR" },
+              {name: this.state.TE, position:"TE" },
+              {name: this.state.DEF, position: "DEF" },
+              {name: this.state.K, position: "K"}
           ]
         }
         // debugger
@@ -77,7 +77,8 @@ export default class CreateTeam extends React.Component {
           body: JSON.stringify(postTeam)
         })
         .then(response => response.json())
-        .then(this.props.addNewTeam(newTeam))    
+        .then(this.props.addNewTeam(newTeam))  
+        
         
       }//end of if
   

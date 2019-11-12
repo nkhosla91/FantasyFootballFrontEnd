@@ -21,7 +21,7 @@ export default class EditCards extends React.Component {
     }
 
     render() {
-        // console.log(this.props)
+        console.log(this.props)
         // debugger
         return (
             <div>

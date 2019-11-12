@@ -81,6 +81,19 @@ export default class CompareTeams extends React.Component {
                 {player: this.state.K}
             ]
           }
+          let renderTeam =   {   
+            name: this.state.name,
+            players: [
+                 this.state.QB,
+                 this.state.RB1,
+                 this.state.RB2,
+                 this.state.WR1,
+                 this.state.WR2,
+                 this.state.TE,
+                 this.state.DEF,
+                 this.state.K
+            ]
+          }
 
         fetch(`http://localhost:4000/api/v1/teams/${this.state.id}`, {
           method: 'PATCH',
@@ -91,16 +104,21 @@ export default class CompareTeams extends React.Component {
             body: JSON.stringify(patchTeam)
             })
             .then(response => response.json())
+
+            this.props.editTeam(renderTeam)
     }
 
     deleteTeam = (event) => {
         event.preventDefault()
+        // debugger
         this.props.removeTeam(this.state.name)
 
         fetch(`http://localhost:4000/api/v1/teams/${this.state.id}`, {
           method: 'delete'
              })
             .then(response => response.json())
+
+            this.props.handleRedirect("See All Your Teams")
         }
 
     render () {
