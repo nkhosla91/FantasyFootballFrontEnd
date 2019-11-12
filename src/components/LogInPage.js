@@ -7,6 +7,7 @@ export default class LogIn extends React.Component {
       currentView: "signUp",
       createUsername: "",
       signedInUsername: "",
+      signedInPassword: "",
       email: "",
       password: ""
     }
@@ -98,7 +99,7 @@ export default class LogIn extends React.Component {
                     </li>
                     <li>
                     <label name="password">Password:</label>
-                    <input type="password" id="password" required/>
+                    <input type="password" id="password" name="signedInPassword" required onChange={this.handleChange} value={this.state.signedInPassword}/>
                     </li>
                 </ul>
                 <input type="submit" value="Log In"/>

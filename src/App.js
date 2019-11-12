@@ -6,11 +6,11 @@ import LogInPage from './components/LogInPage';
 import TeamContainer from './containers/TeamContainer';
 import CompareTeamsContainer from './containers/CompareTeamsContainer';
 import EditDeleteContainer from './containers/EditDeleteContainer';
-// import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   state = {
     NFL: [],
@@ -44,29 +44,34 @@ export default class App extends React.Component {
     this.setState({
       username: username,
       loggedIn: true
-    })
+    }, () => this.props.history.push('/navbar'))
+  }
+
+  myFunc = () => {
+    return <LogInPage loggedIn={this.loggedIn}/>
   }
 
 
-
   render () {
-     console.log(this.state.myTeams)
+     console.log(this.state.loggedIn, this.state.navigation)
     
     // console.log(this.state.NFL)
-    // if(!this.state.loggedIn){
-    //   return(
-    //     <LogInPage signedIn={this.signedIn}/>
-    //   )
-    // }
-    // else 
-    if(this.state.navigation === ""){
-      return (
-        <div>
-          <div name="Nav Bar">
-            <NavBar handleNavBar={this.handleNavBar}/>
-            <TeamContainer myTeams={this.state.myTeams}/>
-          </div>
-        </div>
+    if(!this.state.loggedIn){
+      return(
+        <Switch>
+          <Route path="/login" render={()=> <LogInPage signedIn={this.signedIn} />}/>
+       </Switch>
+      )
+    }
+    else if(this.state.navigation === ""){
+      // debugger
+    return (
+          <Switch>
+            <Route path="/navbar" render={()=> <NavBar handleNavBar={this.handleNavBar} />}/>
+              {/* <NavBar handleNavBar={this.handleNavBar}/>
+            </Route> */}
+          </Switch>
+      
       )
     }else if (this.state.navigation === "Create a New Team"){
       return (
@@ -109,3 +114,5 @@ export default class App extends React.Component {
 
 
 }
+
+export default withRouter(App)

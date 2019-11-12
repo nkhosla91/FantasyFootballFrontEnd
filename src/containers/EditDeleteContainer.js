@@ -36,20 +36,20 @@ export default class CompareTeams extends React.Component {
                         // console.log(player)
                         if(player.position === "RB" ){
                             if(!newTeam.RB1){
-                                newTeam["RB1"] = player.name
+                                newTeam["RB1"] = player
                             } else {
-                                newTeam["RB2"] = player.name
+                                newTeam["RB2"] = player
                             }
 
                         }else if(player.position === "WR"){
                             if(!newTeam.WR1){
-                                newTeam["WR1"] = player.name
+                                newTeam["WR1"] = player
                             } else {
-                                newTeam["WR2"] = player.name
+                                newTeam["WR2"] = player
                             }
 
                         } else {
-                            newTeam[player.position] = player.name
+                            newTeam[player.position] = player
                         }
                     })
               })
@@ -59,7 +59,10 @@ export default class CompareTeams extends React.Component {
 
     playerChange = (event) => {
         event.preventDefault()
-        this.setState({[event.target.name]: event.target.value})
+        let newPlayer = this.props.NFL.filter(player => {
+            return player.name === event.target.value
+        })
+        this.setState({[event.target.name]: newPlayer[0]})
     }
 
     patchNewTeam = (event => {
@@ -68,26 +71,26 @@ export default class CompareTeams extends React.Component {
             id: this.state.id,
             name: this.state.name,
             players: [
-                {name: this.state.QB},
-                {name: this.state.RB1},
-                {name: this.state.RB2},
-                {name: this.state.WR1},
-                {name: this.state.WR2},
-                {name: this.state.TE},
-                {name: this.state.DEF},
-                {name: this.state.K}
+                {player: this.state.QB},
+                {player: this.state.RB1},
+                {player: this.state.RB2},
+                {player: this.state.WR1},
+                {player: this.state.WR2},
+                {player: this.state.TE},
+                {player: this.state.DEF},
+                {player: this.state.K}
             ]
           }
 
-          return fetch(`http://localhost:4000/api/v1/teams/`, {
+        fetch(`http://localhost:4000/api/v1/teams/${this.state.id}`, {
           method: 'PATCH',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(patchTeam)
-        })
-        .then(response => response.json())
+            },
+            body: JSON.stringify(patchTeam)
+            })
+            .then(response => response.json())
     })
 
     render () {
