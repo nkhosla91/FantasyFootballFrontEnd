@@ -13,7 +13,8 @@ export default class CreateTeam extends React.Component {
         DEF: null,
         K: null,
         teamNamed: false,
-        playersSigned: false
+        playersSigned: false,
+        newTeamIDValue: null
     }
 
     handleChange = (event) => {
@@ -66,7 +67,7 @@ export default class CreateTeam extends React.Component {
               {name: this.state.K, position: "K"}
           ]
         }
-        // debugger
+        // debugger 
 
         return fetch("http://localhost:4000/api/v1/teams", {
           method: 'POST',
@@ -77,6 +78,8 @@ export default class CreateTeam extends React.Component {
           body: JSON.stringify(postTeam)
         })
         .then(response => response.json())
+        .then(response => newTeam["id"] = response.id)
+        .then(response => console.log(newTeam, "created TEAM"))
         .then(this.props.addNewTeam(newTeam))  
         
         

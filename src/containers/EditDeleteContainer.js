@@ -1,7 +1,7 @@
 import React from 'react'
 import EditTeamSelector from '../components/EditTeamSelector'
 import EditCards from '../components/EditCards'
-import { networkInterfaces } from 'os'
+// import { networkInterfaces } from 'os' 
 
 
 export default class CompareTeams extends React.Component {
@@ -71,14 +71,14 @@ export default class CompareTeams extends React.Component {
             id: this.state.id,
             name: this.state.name,
             players: [
-                {player: this.state.QB},
-                {player: this.state.RB1},
-                {player: this.state.RB2},
-                {player: this.state.WR1},
-                {player: this.state.WR2},
-                {player: this.state.TE},
-                {player: this.state.DEF},
-                {player: this.state.K}
+                {player: this.state.QB, position: "QB"},
+                {player: this.state.RB1, position: "RB"},
+                {player: this.state.RB2, position: "RB"},
+                {player: this.state.WR1, position: "WR"},
+                {player: this.state.WR2, position: "WR"},
+                {player: this.state.TE, position: "TE"},
+                {player: this.state.DEF, position: "DEF"},
+                {player: this.state.K, position: "K"}
             ]
           }
           let renderTeam =   {   

@@ -73,7 +73,7 @@ class App extends React.Component {
 
   render () {
 
-     console.log(this.state.myTeams)
+    //  console.log(this.state.myTeams)
     
     // console.log(this.state.NFL)
     if(!this.state.loggedIn){
