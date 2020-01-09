@@ -6,19 +6,20 @@ export default class CompareCards extends React.Component {
     render() {
         console.log(this.props)
         return (
-            <div>
-                <form className="review-full-container">
+                <form className="team-compare">
                   {this.props.myTeams.filter(team =>{
                       return team.name=== this.props.team}).map(team => {
                          return team.players.map(player => {
                            return (
-                           <ul>{player.name}</ul>
+                                <ul className="compare-values">
+                                    <p className="name" >{player.name}</p>
+                                    <p className="points">{player.seasonPts}</p>
+                                </ul>
                            )
                          })
                         })
                       }
                 </form>
-            </div>
         )
     }
 }

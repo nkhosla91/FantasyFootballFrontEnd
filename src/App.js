@@ -15,7 +15,7 @@ class App extends React.Component {
 
   state = {
     NFL: [],
-    navigation: "",
+    navigation: "See All Your Teams",
     loggedIn: false,
     username: "",
     myTeams: [

@@ -241,8 +241,54 @@ section#entry-page {
   border-radius: 25px;
   background: rgb(4, 175, 4);
   padding: 20px;
-
 }
+
+
+.team-compare {
+  box-shadow: 10px 10px grey;
+  // align-items: center;
+  // text-align: center;
+  // height: 90%;
+  border-radius: 25px;
+  background: rgb(4, 175, 4);
+  padding: 20px;
+  display: inline;
+  width: 200px;
+  // float
+  background-repeat: no-repeat;
+  // background-position: center 90%;  margin: 2%;
+  padding: 1%;
+  transition: 0.75s;
+  opacity: 1;
+}
+
+.team-compare-container{
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  // flex-flow: row wrap;
+  justify-content: space-evenly;
+  // margin-left: 450px;
+  // margin-right: 450px;
+  margin-top: 80px;
+}
+
+.name{
+  text-align: left;
+}
+.points{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  font-weight: bold;
+  justify-content: flex-end;
+}
+
+
+// .compare-values{
+//   flex-direction: row;
+//   justify-content: space-between;
+// }
 
 
 ////select team tiles
@@ -410,7 +456,7 @@ section#entry-page {
   background: rgba(0, 0, 0, 0.459);
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  // flex-flow: row wrap;
   justify-content: center;
   font: 18px "Poppins", Arial, sans-serif;
 }

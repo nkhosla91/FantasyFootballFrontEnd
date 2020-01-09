@@ -23,9 +23,13 @@ export default class CompareTeamsContainer extends React.Component {
         } else {
             return(
                 <div>
-                    <CompareTeamSelector myTeams={this.props.myTeams} setTeams={this.setTeams}/>
-                    <CompareCards myTeams={this.props.myTeams} team={this.state.teamOne}/>
-                    <CompareCards myTeams={this.props.myTeams} team={this.state.teamTwo}/>
+                    <div> 
+                        <CompareTeamSelector myTeams={this.props.myTeams} setTeams={this.setTeams}/>
+                    </div>
+                    <div className="team-compare-container">
+                        <CompareCards myTeams={this.props.myTeams} team={this.state.teamOne}/>
+                        <CompareCards myTeams={this.props.myTeams} team={this.state.teamTwo}/>
+                    </div>
                 </div>
             )
         }
